@@ -60,7 +60,7 @@ namespace TrainBookingBackend.Controllers
             if (exsistingUser != null)
             {
                 var token = CreateToken(exsistingUser);
-                return Ok(token);
+                return Ok(new { token });
             }
 
             return NotFound("User Not Found!");
@@ -97,9 +97,11 @@ namespace TrainBookingBackend.Controllers
 
         private string CreateToken(User user)
         {
-            List<Claim> claims = new List<Claim>
+            List<Claim> claims = new()
             {
-                new Claim(ClaimTypes.Name, user.Email)
+                new Claim(ClaimTypes.NameIdentifier, user.NIC),
+                new Claim(ClaimTypes.Email, user.Email),
+                new Claim(ClaimTypes.Role, user.Role)
             };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration.GetSection("AppSettings:Token").Value!));

@@ -23,6 +23,8 @@ namespace TrainBookingBackend.Models
 
         [BsonElement("price")]
         public float Price { get; set; }
-        // public List<DateManagement> DateMgt { get; set; }
+
+        [BsonElement("effectiveDate")]
+        public DateTime EffectiveDate { get; set; } = DateTime.Now;
     }
 }
