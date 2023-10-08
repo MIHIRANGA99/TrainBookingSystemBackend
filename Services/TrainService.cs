@@ -41,7 +41,7 @@ namespace TrainBookingBackend.Services
 
         public Train UpdateTrain(string id, Train train)
         {
-            _trains.ReplaceOne(id, train);
+            _trains.ReplaceOne(train => train.Id == id, train);
             return _trains.Find(train => train.Id == id).FirstOrDefault<Train>();
         }
     }
