@@ -13,11 +13,9 @@ namespace TrainBookingBackend.Services
     {
         private readonly IMongoCollection<User> _users;
 
-        public UserService(ISystemDBSettings systemDBSettings, IMongoClient mongoClient) {
-            var databaseName = systemDBSettings.DatabaseName;
-            var collectionName = systemDBSettings.CollectionName;
-
-            Console.WriteLine($"DatabaseName: {databaseName}, CollectionName: {collectionName}");
+        public UserService(IUserDBSettings userDBSettings, IMongoClient mongoClient) {
+            var databaseName = userDBSettings.UserDatabaseName;
+            var collectionName = userDBSettings.UserCollectionName;
 
             var database = mongoClient.GetDatabase(databaseName);
             _users = database.GetCollection<User>(collectionName);
@@ -52,7 +50,7 @@ namespace TrainBookingBackend.Services
 
         public User GetUser(string id)
         {
-            return _users.Find<User>(id).FirstOrDefault<User>();
+            return _users.Find(user => user.Id == id).FirstOrDefault<User>();
         }
 
         public List<User> GetUsers()
@@ -62,7 +60,7 @@ namespace TrainBookingBackend.Services
 
         public User UpdateUser(string id, User user)
         {
-            _users.ReplaceOne(id, user);
+            _users.ReplaceOne(user => user.Id == id, user);
             return _users.Find<User>(user => user.Id == id).FirstOrDefault();
         }
     }
