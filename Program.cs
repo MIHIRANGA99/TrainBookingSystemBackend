@@ -44,6 +44,16 @@ builder.Services.AddSingleton<IMongoClient>(dbSettings =>
 
 builder.Services.AddScoped<ITrainService, TrainService>();
 
+// Schedule Service
+builder.Services.Configure<ScheduleDBSettings>(builder.Configuration.GetSection("ScheduleDBSettings"));
+builder.Services.AddSingleton<IScheduleDBSettings>(sp =>
+    sp.GetRequiredService<IOptions<ScheduleDBSettings>>().Value);
+
+builder.Services.AddSingleton<IMongoClient>(dbSettings =>
+    new MongoClient(builder.Configuration.GetValue<string>("ScheduleDBSettings:ScheduleConnectionString")));
+
+builder.Services.AddScoped<IScheduleService, ScheduleService>();
+
 builder.Services.AddControllers();
 
 //CORS

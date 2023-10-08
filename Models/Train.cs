@@ -17,7 +17,9 @@ namespace TrainBookingBackend.Models
 
         [BsonElement("trainType")]
         public string TrainType { get; set; } = string.Empty;
-        //public List<Schedule> { get; set; } = string.Empty;
+
+        [BsonElement("schedules")]
+        public List<string> Schedules { get; set; } = new List<string>();
 
         [BsonElement("isActive")]
         public bool IsActive { get; set; }
