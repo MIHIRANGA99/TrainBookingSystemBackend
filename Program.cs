@@ -24,7 +24,6 @@ builder.Services.AddSingleton<IMongoClient>(dbSettings =>
 
 builder.Services.AddScoped<IUserService, UserService>();
 
-
 // Reservation Service
 builder.Services.Configure<SystemDBSettings>(builder.Configuration.GetSection("ReservationDBSettings"));
 builder.Services.AddSingleton<ISystemDBSettings>(sp =>
@@ -35,7 +34,27 @@ builder.Services.AddSingleton<IMongoClient>(dbSettings =>
 
 builder.Services.AddScoped<IReservationService, ReservationService>();
 
+// Train Service
+builder.Services.Configure<TrainDBSettings>(builder.Configuration.GetSection("TrainDBSettings"));
+builder.Services.AddSingleton<ITrainDBSettings>(sp =>
+    sp.GetRequiredService<IOptions<TrainDBSettings>>().Value);
+
+builder.Services.AddSingleton<IMongoClient>(dbSettings =>
+    new MongoClient(builder.Configuration.GetValue<string>("TrainDBSettings:TrainConnectionString")));
+
+builder.Services.AddScoped<ITrainService, TrainService>();
+
 builder.Services.AddControllers();
+
+//CORS
+builder.Services.AddCors(options =>
+ {
+     options.AddPolicy("AllowLocalhost3000",
+         builder => builder.WithOrigins("http://localhost:3000")
+             .AllowAnyMethod()
+             .AllowAnyHeader());
+ });
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
@@ -70,6 +89,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseCors("AllowLocalhost3000");
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
