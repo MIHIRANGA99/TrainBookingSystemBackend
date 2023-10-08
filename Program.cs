@@ -15,15 +15,25 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 // User Service
-builder.Services.Configure<SystemDBSettings>(builder.Configuration.GetSection("UserDBSettings"));
-builder.Services.AddSingleton<ISystemDBSettings>(sp =>
-    sp.GetRequiredService<IOptions<SystemDBSettings>>().Value);
+builder.Services.Configure<UserDBSettings>(builder.Configuration.GetSection("UserDBSettings"));
+builder.Services.AddSingleton<IUserDBSettings>(sp =>
+    sp.GetRequiredService<IOptions<UserDBSettings>>().Value);
 
 builder.Services.AddSingleton<IMongoClient>(dbSettings =>
     new MongoClient(builder.Configuration.GetValue<string>("UserDBSettings:ConnectionString")));
 
 builder.Services.AddScoped<IUserService, UserService>();
 
+
+// Reservation Service
+builder.Services.Configure<SystemDBSettings>(builder.Configuration.GetSection("ReservationDBSettings"));
+builder.Services.AddSingleton<ISystemDBSettings>(sp =>
+    sp.GetRequiredService<IOptions<SystemDBSettings>>().Value);
+
+builder.Services.AddSingleton<IMongoClient>(dbSettings =>
+    new MongoClient(builder.Configuration.GetValue<string>("ReservationDBSettings:ConnectionString")));
+
+builder.Services.AddScoped<IReservationService, ReservationService>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

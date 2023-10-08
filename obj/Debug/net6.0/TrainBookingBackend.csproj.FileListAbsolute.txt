@@ -57,3 +57,4 @@ E:\DotNet Pojects\TrainBookingBackend\TrainBookingBackend\bin\Debug\net6.0\Micro
 E:\DotNet Pojects\TrainBookingBackend\TrainBookingBackend\bin\Debug\net6.0\Scrutor.dll
 E:\DotNet Pojects\TrainBookingBackend\TrainBookingBackend\bin\Debug\net6.0\Swashbuckle.AspNetCore.Filters.dll
 E:\DotNet Pojects\TrainBookingBackend\TrainBookingBackend\bin\Debug\net6.0\Swashbuckle.AspNetCore.Filters.Abstractions.dll
+E:\DotNet Pojects\TrainBookingBackend\TrainBookingBackend\bin\Debug\net6.0\Swashbuckle.AspNetCore.Annotations.dll

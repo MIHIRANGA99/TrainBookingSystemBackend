@@ -71,9 +71,9 @@ namespace TrainBookingBackend.Controllers
         public ActionResult Put(string id, [FromBody] User user)
         {
             var existingUser = _userService.GetUser(id);
-            if (existingUser != null)
+            if (existingUser == null)
             {
-                NotFound($"User with NIC: {id} has not found!");
+                return NotFound($"User with NIC: {id} has not found!");
             }
 
             _userService.UpdateUser(id, user);

@@ -1,6 +1,8 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Driver;
+using Swashbuckle.AspNetCore.Annotations;
+
 namespace TrainBookingBackend.Models
 {
     [BsonIgnoreExtraElements]
@@ -9,6 +11,7 @@ namespace TrainBookingBackend.Models
 
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
+        [SwaggerSchema(ReadOnly = true)]
         public string Id { get; set; } = String.Empty;
 
         [BsonElement("nic")]
@@ -34,5 +37,8 @@ namespace TrainBookingBackend.Models
 
         [BsonElement("isActive")]
         public bool IsActive {  get; set; }
+
+        [BsonElement("reservations")]
+        public List<string> Reservations { get; set; } = new List<string>();
     }
 }
