@@ -112,7 +112,7 @@ namespace TrainBookingBackend.Controllers
 
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256Signature);
 
-            var token = new JwtSecurityToken(claims: claims, expires: DateTime.Now.AddMinutes(2), signingCredentials: creds);
+            var token = new JwtSecurityToken(claims: claims, expires: DateTime.Now.AddHours(2), signingCredentials: creds);
 
             var jwt = new JwtSecurityTokenHandler().WriteToken(token);
 
