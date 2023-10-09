@@ -99,9 +99,12 @@ namespace TrainBookingBackend.Controllers
         {
             List<Claim> claims = new()
             {
-                new Claim(ClaimTypes.NameIdentifier, user.NIC),
-                new Claim(ClaimTypes.Email, user.Email),
-                new Claim(ClaimTypes.Role, user.Role)
+                new Claim("nic", user.NIC),
+                new Claim("name", $"{user.FirstName} {user.LastName}"),
+                new Claim("isActive", user.IsActive.ToString()),
+                new Claim("email", user.Email),
+                new Claim("role", user.Role),
+                new Claim("id", user.Id)
             };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration.GetSection("AppSettings:Token").Value!));

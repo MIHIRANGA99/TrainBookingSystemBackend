@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "E:\\DotNet Pojects\\TrainBookingBackend\\TrainBookingBackend\\TrainBookingBackend.csproj": {}
+    "H:\\Personal\\TrainBookingSystemBackend\\TrainBookingBackend.csproj": {}
   },
   "projects": {
-    "E:\\DotNet Pojects\\TrainBookingBackend\\TrainBookingBackend\\TrainBookingBackend.csproj": {
+    "H:\\Personal\\TrainBookingSystemBackend\\TrainBookingBackend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\DotNet Pojects\\TrainBookingBackend\\TrainBookingBackend\\TrainBookingBackend.csproj",
+        "projectUniqueName": "H:\\Personal\\TrainBookingSystemBackend\\TrainBookingBackend.csproj",
         "projectName": "TrainBookingBackend",
-        "projectPath": "E:\\DotNet Pojects\\TrainBookingBackend\\TrainBookingBackend\\TrainBookingBackend.csproj",
-        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "E:\\DotNet Pojects\\TrainBookingBackend\\TrainBookingBackend\\obj\\",
+        "projectPath": "H:\\Personal\\TrainBookingSystemBackend\\TrainBookingBackend.csproj",
+        "packagesPath": "C:\\Users\\MihirangaGoonetillek\\.nuget\\packages\\",
+        "outputPath": "H:\\Personal\\TrainBookingSystemBackend\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\MihirangaGoonetillek\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
