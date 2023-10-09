@@ -45,7 +45,8 @@ namespace TrainBookingBackend.Controllers
         [HttpPost("register")]
         public ActionResult Post([FromBody] User user)
         {
-            string passwordHash = BCrypt.Net.BCrypt.HashPassword(user.Password);
+            string saltValue = BCrypt.Net.BCrypt.GenerateSalt(12);
+            string passwordHash = BCrypt.Net.BCrypt.HashPassword(user.Password, saltValue);
             user.Password = passwordHash;
             _userService.CreateUser(user);
 

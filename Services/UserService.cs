@@ -55,7 +55,7 @@ namespace TrainBookingBackend.Services
 
         public List<User> GetUsers()
         {
-            return _users.Find<User>(user => user.IsActive == true).ToList<User>();
+            return _users.Find<User>(user => true).ToList<User>();
         }
 
         public User UpdateUser(string id, User user)
