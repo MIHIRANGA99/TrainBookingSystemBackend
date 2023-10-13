@@ -41,7 +41,7 @@ namespace TrainBookingBackend.Services
 
         public Reservation UpdateReservation(string id, Reservation reservation)
         {
-            _reservations.ReplaceOne(id, reservation);
+            _reservations.ReplaceOne(reservation => reservation.Id == id, reservation);
             return _reservations.Find(reservation => reservation.Id == id).FirstOrDefault<Reservation>();
         }
     }
