@@ -24,7 +24,7 @@ namespace TrainBookingBackend.Services
 
         public void DeleteSchedule(string id)
         {
-            _schedules.DeleteOne(id);
+            _schedules.DeleteOne(schedule => schedule.Id == id);
         }
 
         public Schedule GetSchedule(string id)
@@ -39,7 +39,7 @@ namespace TrainBookingBackend.Services
 
         public Schedule UpdateSchedule(string id, Schedule schedule)
         {
-            _schedules.ReplaceOne(id, schedule);
+            _schedules.ReplaceOne(schedule => schedule.Id == id, schedule);
             return _schedules.Find(schedule => schedule.Id == id).FirstOrDefault<Schedule>();
         }
     }

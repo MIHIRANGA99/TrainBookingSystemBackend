@@ -56,16 +56,23 @@ namespace TrainBookingBackend.Controllers
         [HttpPost("login")]
         public ActionResult<User> Post([FromBody] UserLoginDto loginDto)
         {
-            var exsistingUser = _userService.LoginUser(loginDto.Email, loginDto.Password);
+            var existingUser = _userService.LoginUser(loginDto.Email, loginDto.Password);
 
-            if (exsistingUser != null)
+            if (existingUser != null)
             {
-                var token = CreateToken(exsistingUser);
-                return Ok(new { token });
+                if (!existingUser.IsActive)
+                {
+                    return Unauthorized("User is not active. Login is not allowed.");
+                }
+
+                var token = CreateToken(existingUser);
+                return Ok(new { token, isActive = existingUser.IsActive });
             }
 
             return NotFound("User Not Found!");
         }
+
+
 
         // PUT api/<UserController>/5
         [HttpPut("{id}")]
