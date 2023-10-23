@@ -15,14 +15,17 @@ namespace TrainBookingBackend.Models
         [BsonElement("trainId")]
         public string TrainId { get; set; } = string.Empty;
 
-        [BsonElement("startLocation")]
-        public string StartLocation { get; set; } = string.Empty;
+        [BsonElement("route")]
+        public List<string> Route { get; set; } = new List<string>();
 
-        [BsonElement("endLocation")]
-        public string EndLocation { get; set; } = string.Empty;
+        [BsonElement("pricePerBlock")]
+        public float PricePerBlock { get; set; }
 
-        [BsonElement("price")]
-        public float Price { get; set; }
+        [BsonElement("startTime")]
+        public DateTime StartTime { get; set; } = DateTime.Now;
+
+        [BsonElement("endTime")]
+        public DateTime EndTime {  get; set; } = DateTime.Now;
 
         [BsonElement("effectiveDate")]
         public DateTime EffectiveDate { get; set; } = DateTime.Now;
